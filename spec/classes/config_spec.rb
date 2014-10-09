@@ -6,7 +6,6 @@ describe 'serf::config' do
     let(:pre_condition) { 'include serf' }
     it { should contain_file('/etc/serf') }
     it { should contain_file('/etc/serf/serf.conf') }
-    it { should contain_file('serf_upstart') }
   end
 
   context 'with custom config_dir' do

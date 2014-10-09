@@ -1,11 +1,10 @@
 class serf::params{
-  $version          = '0.3.0'
+  $version          = '0.6.3'
   $protocol_version = 1
   $bind             = $::ipaddress
   $advertise        = $::ipaddress
-  $config_dir       = '/etc/serf'
+  $config_dir       = '/etc/serf/conf.d'
   $config_file      = "${config_dir}/serf.conf"
-  $log_dir          = '/var/log/serf'
   $encrypt          = ''
   $log_level        = 'info'
   $log_file         = '/var/log/serf.log'

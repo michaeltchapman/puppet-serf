@@ -1,16 +1,35 @@
 <%- require 'json'
 config_file= {}
-role_key = @version >= '0.4.0' ? 'tag' : 'role'
-config_file[role_key] = @role if @role
-config_file['node_name'] = @node if @node
-bind_key = @version >= '0.3.0' ? 'bind' : 'bind_addr'
-config_file[bind_key] = @bind
+
+config_file['encrypt_key'] = @encrypt_key if @encrypt_key,
+config_file['rpc_auth'] = @rpc_auth if @rpc_auth,
+config_file['node_name'] = @node_name if @node_name
+config_file['tags'] = @tags unless @tags.empty?
+config_file['tags_file'] = @tags_file if @tags_file
+config_file['bind'] = @bind if @bind
+config_file['interface'] = @interface if @interface
 config_file['advertise'] = @advertise if @advertise
-config_file['encrypt_key'] = @encrypt_key if @encrypt_key
+config_file['discover'] = @discover if @discover
 config_file['log_level'] = @log_level if @log_level
-config_file['protocol'] = @protocol_version.to_i if @protocol_version
+config_file['profile'] = @profile if @profile
+config_file['protocol'] = @protocol.to_i if @protocol
 config_file['rpc_addr'] = @rpc_addr if @rpc_addr
-config_file['event_handlers'] = @event_handler unless @event_handler.empty?
-config_file['start_join'] = @join unless @join.empty?
+config_file['event_handlers'] = @event_handlers unless @event_handlers.empty?
+config_file['start_join'] = @start_join unless @start_join.empty?
+config_file['replay_on_join'] = @replay_on_join if @replay_on_join
+config_file['snapshot_path'] = @snapshot_path if @snapshot_path
+config_file['leave_on_terminate'] = @leave_on_terminate if @leave_on_terminate
+config_file['skip_leave_on_interrupt'] = @skip_leave_on_interrupt if @skip_leave_on_interrupt
+config_file['reconnect_interval'] = @reconnect_interval if @reconnect_interval
+config_file['reconnect_timeout'] = @reconnect_timeout if @reconnect_timeout
+config_file['tombstone_timeout'] = @tombstone_timeout if @tombstone_timeout
+config_file['disable_name_resolution'] = @disable_name_resolution if @disable_name_resolution
+config_file['enable_syslog'] = @enable_syslog if @enable_syslog
+config_file['syslog_facility'] = @syslog_facility if @syslog_facility
+config_file['retry_join'] = @retry_join unless @retry_join.empty?
+config_file['retry_max_attempts'] = @retry_max_attempts if @retry_max_attempts
+config_file['retry_interval'] = @retry_interval if @retry_interval
+config_file['rejoin_after_leave'] = @rejoin_after_leave if @rejoin_after_leave
+config_file['statsite_addr'] = @statsite_addr if @statsite_addr
 -%>
 <%=JSON.generate(config_file)%>
